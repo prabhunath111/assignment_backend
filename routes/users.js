@@ -68,11 +68,7 @@ router.put('/updateuser', upload.single('userImage') ,function(req, res) {
 
   updateUser = (obj) => {
     User.findByIdAndUpdate(req.body._id, obj, function(err, res){
-      if(err){
-        console.log("error", err);
-      } else {
-        console.log("response", res);
-      }
+      (err)?console.log("error", err):console.log("response", res);
     });
   }
   res.send("Updated data");
