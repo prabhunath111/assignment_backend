@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
      password: {
          type: String, 
      },
-     img: {
+     userImage: {
          type: String
      }
 })
