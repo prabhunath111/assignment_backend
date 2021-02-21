@@ -6,6 +6,7 @@ const saltRounds = 10;
 const fs = require('fs');
 var path = require('path');
 const multer = require('multer');
+const { response } = require('../app');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -20,10 +21,15 @@ const upload = multer({storage: storage, limits: {
   fileSize: 1024 * 1024 *2
 }});
 
+router.get('/', function(req, res){
+  User.find({}, function(error, response){
+    (error)?res.send({"error": error}):
+      res.send({"Users": response})})
+});
 
 /* GET users listing.*/
 router.post('/createuser', upload.single('userImage') ,function (req, res, next) {
-  console.log("line13", req.file);
+  console.log("file", req.file);
   bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
     // Now we can store the password hash in db.
     var user = new User({
