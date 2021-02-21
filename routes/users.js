@@ -6,7 +6,6 @@ const saltRounds = 10;
 const fs = require('fs');
 var path = require('path');
 const multer = require('multer');
-const { update } = require('../modal/userSchema');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
