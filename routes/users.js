@@ -43,16 +43,15 @@ router.post('/createuser', upload.single('userImage') ,function (req, res, next)
     });
   });
 });
-
-router.put('/updateuser', function(req, res) {
- User.findByIdAndUpdate(req.body._id, {"name": req.body.name}, function(err, res){
-   if(err){
-     console.log("error", err);
-   } else {
-     console.log("line34", res);
-   }
+router.put('/updateuser', upload.single('userImage') ,function(req, res) {
+  User.findByIdAndUpdate(req.body._id, {"name": req.body.name}, function(err, res){
+    if(err){
+      console.log("error", err);
+    } else {
+      console.log("line34", res);
+    }
+  });
+  res.send("Updated data");
  });
- res.send("Updated data");
-});
 
 module.exports = router;
